@@ -12,7 +12,7 @@ require_once 'vendor/autoload.php';
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    
-   if($message == "getProfile")
+   if($message == "getprofile")
    {
 	   getProfile($id);
    }
@@ -21,22 +21,22 @@ require_once 'vendor/autoload.php';
 	  echoMessage($id); 
    }
    
-   function echoMessage($id)
+   function echoMessage($_id)
    {
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
 		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-		$response = $bot->pushMessage($id, $textMessageBuilder);
+		$response = $bot->pushMessage($_id, $textMessageBuilder);
 
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
    }
    
-   function getProfile($id)
+   function getProfile($_id)
    {
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
 		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-		$response = $bot->getProfile($id);
+		$response = $bot->getProfile($_id);
 		if ($response->isSucceeded()) {
 			$profile = $response->getJSONDecodedBody();
 			echo $profile['displayName'];
