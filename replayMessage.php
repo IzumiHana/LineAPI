@@ -12,6 +12,15 @@ require_once 'vendor/autoload.php';
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    
+   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channelSecret]);
+
+		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+		$response = $bot->pushMessage($_id, $textMessageBuilder);
+
+		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+   
+   /*
    if($message == "getprofile")
    {
 	   getProfile($accessToken,$channelSecret,$id);
@@ -20,7 +29,7 @@ require_once 'vendor/autoload.php';
    {
 	  echoMessage($accessToken,$channelSecret,$id); 
    }
-   
+   */
    function echoMessage($_accessToken,$_channelSecret,$_id)
    {
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
@@ -37,7 +46,8 @@ require_once 'vendor/autoload.php';
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
 		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channelSecret]);
 		$response = $bot->getProfile($_id);
-		if ($response->isSucceeded()) {
+		if ($response->isSucceeded()) 
+		{
 			$profile = $response->getJSONDecodedBody();
 			echo $profile['displayName'];
 			echo $profile['pictureUrl'];
