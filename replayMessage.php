@@ -40,11 +40,11 @@ require_once 'vendor/autoload.php';
    
    if($message == "getprofile")
    {
-	   getProfile($accessToken,$channelSecret,$id,$message);
+	   getProfile($accessToken,$channelSecret,$id);
    }
    else
    {
-	  echoMessage($accessToken,$channelSecret,$id); 
+	  echoMessage($accessToken,$channelSecret,$id,$message); 
    }
    
    
