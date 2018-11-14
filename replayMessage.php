@@ -35,6 +35,12 @@ require_once 'vendor/autoload.php';
 			echo $profile['displayName'];
 			echo $profile['pictureUrl'];
 			echo $profile['statusMessage'];
+			
+			$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($profile['displayName']);
+			$response = $bot->pushMessage($_id, $textMessageBuilder);
+			
+			$imageMessageBuilder = new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($profile['pictureUrl'],$profile['pictureUrl']);
+			$response = $bot->pushMessage($_id, $imageMessageBuilder);
 		}
    }
    
