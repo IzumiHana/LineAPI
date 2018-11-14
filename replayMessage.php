@@ -14,17 +14,17 @@ require_once 'vendor/autoload.php';
    
    if($message == "getprofile")
    {
-	   getProfile($id);
+	   getProfile($accessToken,$channelSecret,$id);
    }
    else
    {
-	  echoMessage($id); 
+	  echoMessage($accessToken,$channelSecret,$id); 
    }
    
-   function echoMessage($_id)
+   function echoMessage($_accessToken,$_channelSecret,$_id)
    {
-		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channelSecret]);
 
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 		$response = $bot->pushMessage($_id, $textMessageBuilder);
@@ -32,10 +32,10 @@ require_once 'vendor/autoload.php';
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
    }
    
-   function getProfile($_id)
+   function getProfile($_accessToken,$_channelSecret,$_id)
    {
-		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channelSecret]);
 		$response = $bot->getProfile($_id);
 		if ($response->isSucceeded()) {
 			$profile = $response->getJSONDecodedBody();
@@ -45,5 +45,7 @@ require_once 'vendor/autoload.php';
 		}
    }
    
-
+  
+   
+	exit();
 ?>
