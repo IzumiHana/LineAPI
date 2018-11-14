@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php'; 
 
    $accessToken = "aAbIJBE20DNWjqeFCJMvEQzXfrAQxE4wW4NuwVrhU3zvB9G4wSP/mqM9hgPAnjtW6OlrEpwypNwKRDMXA/fHTFQD7a6iroxKzA35WSpmNqtV8dppfjsslu5uR7t8IwCLOLffF3O3xLm7FD0CHRlbsgdB04t89/1O/w1cDnyilFU=";
-   
+   $channelSecret = "792c96be503870a4427b961e3ea673fb";
    
    $content = file_get_contents('php://input');
    $arrayJson = json_decode($content, true);
@@ -14,17 +14,17 @@ require_once 'vendor/autoload.php';
    
    if($message == "getProfile")
    {
-	   getProfile();
+	   getProfile($id);
    }
    else
    {
-	  echoMessage(); 
+	  echoMessage($id); 
    }
    
-   function echoMessage()
+   function echoMessage($id)
    {
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '792c96be503870a4427b961e3ea673fb']);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 		$response = $bot->pushMessage($id, $textMessageBuilder);
@@ -32,11 +32,11 @@ require_once 'vendor/autoload.php';
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
    }
    
-   function getProfile()
+   function getProfile($id)
    {
-		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
-		$response = $bot->getProfile('<userId>');
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+		$response = $bot->getProfile($id);
 		if ($response->isSucceeded()) {
 			$profile = $response->getJSONDecodedBody();
 			echo $profile['displayName'];
