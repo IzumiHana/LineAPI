@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '792c96be503870a4427b961e3ea673fb']);
 
 	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-	$response = $bot->pushMessage('izumisakura', $textMessageBuilder);
+	$response = $bot->pushMessage('U987c895d7bbe6ca3ed81a1b194cb4a9c', $textMessageBuilder);
 
 	echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>
