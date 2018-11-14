@@ -13,24 +13,6 @@ require_once 'vendor/autoload.php';
    $id = $arrayJson['events'][0]['source']['userId'];
    
    
-   
-   
-   if($message == "getprofile")
-   {
-	   getProfile($accessToken,$channelSecret,$id);
-   }
-   else
-   {
-	  //echoMessage($accessToken,$channelSecret,$id); 
-	  $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-
-		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-		$response = $bot->pushMessage($id, $textMessageBuilder);
-
-		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
-   }
-   
    function echoMessage($_accessToken,$_channelSecret,$_id)
    {
 		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
@@ -55,6 +37,17 @@ require_once 'vendor/autoload.php';
 			echo $profile['statusMessage'];
 		}
    }
+   
+   if($message == "getprofile")
+   {
+	   getProfile($accessToken,$channelSecret,$id);
+   }
+   else
+   {
+	  echoMessage($accessToken,$channelSecret,$id); 
+   }
+   
+   
    
   
    
