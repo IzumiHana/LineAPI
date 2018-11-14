@@ -12,11 +12,11 @@ require_once 'vendor/autoload.php';
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    
-   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_accessToken);
-		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channelSecret]);
+   $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
 		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-		$response = $bot->pushMessage($_id, $textMessageBuilder);
+		$response = $bot->pushMessage($id, $textMessageBuilder);
 
 		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
    
