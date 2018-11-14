@@ -12,11 +12,38 @@ require_once 'vendor/autoload.php';
    //รับ id ของผู้ใช้
    $id = $arrayJson['events'][0]['source']['userId'];
    
-    $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
-	$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '792c96be503870a4427b961e3ea673fb']);
+   if($message == "getProfile")
+   {
+	   getProfile();
+   }
+   else
+   {
+	  echoMessage(); 
+   }
+   
+   function echoMessage()
+   {
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($accessToken);
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '792c96be503870a4427b961e3ea673fb']);
 
-	$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
-	$response = $bot->pushMessage($id, $textMessageBuilder);
+		$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+		$response = $bot->pushMessage($id, $textMessageBuilder);
 
-	echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+		echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+   }
+   
+   function getProfile()
+   {
+		$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
+		$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
+		$response = $bot->getProfile('<userId>');
+		if ($response->isSucceeded()) {
+			$profile = $response->getJSONDecodedBody();
+			echo $profile['displayName'];
+			echo $profile['pictureUrl'];
+			echo $profile['statusMessage'];
+		}
+   }
+   
+
 ?>
