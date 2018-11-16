@@ -43,8 +43,8 @@
 			...
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+			<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>-->
 		  </div>
 		</div>
 	  </div>
@@ -92,8 +92,9 @@
 					}
 		  $.post( "pushMessage.php",send,
 		  function( data ) {
-			  $("#modal_mainBody").html(data);
-			   $('#pushMessageModal').modal('show');
+			   $("#modal_mainBody").html(data);
+			   $("#pushMessageModal").modal('show');
+			   $("#message").val("");
 			});
 		 
 	  })
