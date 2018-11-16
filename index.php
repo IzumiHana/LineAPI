@@ -11,7 +11,7 @@
     <title>Line Bot</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstra‌​p.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
@@ -143,14 +143,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="vendor/jquery/jquery.min.js"></script> -->
+    <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!--<script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
     <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
+    <!--<script src="js/resume.min.js"></script> -->
 
   </body>
 
