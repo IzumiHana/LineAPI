@@ -2,8 +2,8 @@
 
 require_once 'vendor/autoload.php'; 
 
-   $accessToken = "aAbIJBE20DNWjqeFCJMvEQzXfrAQxE4wW4NuwVrhU3zvB9G4wSP/mqM9hgPAnjtW6OlrEpwypNwKRDMXA/fHTFQD7a6iroxKzA35WSpmNqtV8dppfjsslu5uR7t8IwCLOLffF3O3xLm7FD0CHRlbsgdB04t89/1O/w1cDnyilFU=";
-   $channelSecret = "792c96be503870a4427b961e3ea673fb";
+   $accessToken = "mseffG47b6f1E2Tun5BEKadQnhAMLK0hIZ48IN8TSD309Tc9JM3wA7RwHLKf/Z5u5kdHpaMP1t8CMo7sHVxkeOLEVRsx8GiFtX8634mtr4bzfib9AdNuUs3OOBcz+P5pRXSijKhDCaNGSzI6fF2y+QdB04t89/1O/w1cDnyilFU=";
+   $channelSecret = "69f681980b4be247bc5fb821857acceb";
    
    $content = file_get_contents('php://input');
    $arrayJson = json_decode($content, true);
